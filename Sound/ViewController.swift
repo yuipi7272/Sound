@@ -12,10 +12,12 @@ class ViewController: UIViewController {
     // 表示する箱を作る
     @IBOutlet var drumButton: UIButton!
     @IBOutlet var pianoButton: UIButton!
+    @IBOutlet var guitarButton: UIButton!
     
     // サウンドファイルを読み込んで、プレイヤーをつくる
     let drumSoundPlayer = try!AVAudioPlayer(data: NSDataAsset(name: "drumSound")!.data)
     let pianoSoundPlayer = try!AVAudioPlayer(data: NSDataAsset(name: "pianoSound")!.data)
+    let guitarSoundPlayer = try!AVAudioPlayer(data: NSDataAsset(name: "guitarSound")!.data)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +45,18 @@ class ViewController: UIViewController {
         pianoSoundPlayer.currentTime = 0
         pianoSoundPlayer.play()
     }
-    @IBAction func touchPianoButton(){
+    @IBAction func touchUpPianoButton(){
         pianoButton.setImage(UIImage(named: "pianoImage"), for: .normal)
+    }
+    
+    // ■ギターに関するコード
+    @IBAction func touchDownGuitarButton(){
+        guitarButton.setImage(UIImage(named: "guitarPlayingImage"), for: .normal)
+        guitarSoundPlayer.currentTime = 0
+        guitarSoundPlayer.play()
+    }
+    @IBAction func touchUpGuitarButton(){
+        guitarButton.setImage(UIImage(named: "guitarImage"), for: .normal)
     }
 }
 
